@@ -1,7 +1,15 @@
 
 %% 0) Load your MAT file
-S = load('C:\Users\ahmeds28\Downloads\kalman\battery_ecm_ekf\data\10-25-19_11.29 960_WLTP206b.mat');
+thisScript = mfilename('fullpath');              % full path to Measured_data_import.m
+repoRoot   = fileparts(fileparts(thisScript));   % up one -> scripts/, up two -> repo root
+
+% Pick your data file under /data
+dataFile   = fullfile(repoRoot, 'data', '10-25-19_11.29 960_WLTP206b.mat');
+
+% Load
+S    = load(dataFile);
 meas = S.meas;
+
 
 %% 1) Clean time vector (strictly increasing) and start at t=0
 t = meas.Time(:);                 % ensure column

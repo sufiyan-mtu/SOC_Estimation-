@@ -6,8 +6,8 @@ function setup_ekf(varargin)
 %
 % Name-Value:
 %   'ddPath'   : dictionary path (default 'mdl/ecm_dd.sldd')
-%   'Q_proc'   : SOC process variance        (default 1e-6)
-%   'R_meas'   : voltage measurement var     (default 9e-4)      % <-- unchanged default
+%   'Q_proc'   : SOC process variance        (default 1e-8)
+%   'R_meas'   : voltage measurement var     (default 0.36)      % <-- unchanged default
 %   'H_min'    : Jacobian floor              (default 5e-5)
 %   'soc_min'  : SOC clamp lower             (default 0.0)
 %   'soc_max'  : SOC clamp upper             (default 1.0)

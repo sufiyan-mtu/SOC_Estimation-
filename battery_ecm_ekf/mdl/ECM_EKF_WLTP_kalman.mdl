@@ -47,8 +47,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2026-01-07T17:17:30Z</dcterms:created>
   <dc:creator>ahmeds28</dc:creator>
   <cp:lastModifiedBy>ahmeds28</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-01-12T04:39:50Z</dcterms:modified>
-  <cp:revision>1.33</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-01-14T03:23:18Z</dcterms:modified>
+  <cp:revision>1.37</cp:revision>
   <cp:version>R2021b</cp:version>
 </cp:coreProperties>
 
@@ -605,12 +605,14 @@ catch ME
     warning(&apos;LoadFcn auto-init failed: %s&apos;, ME.message);
 end</P>
     <P Name="DataDictionary">ecm_dd.sldd</P>
+    <P Name="StopFcn">try, make_ecm_report; catch ME, disp(getReport(ME,&apos;extended&apos;)); end;
+try, make_ekf_report; catch ME, disp(getReport(ME,&apos;extended&apos;)); end;</P>
     <P Name="LastSavedArchitecture">win64</P>
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="RTWModifiedTimeStamp">690071981</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.33&gt;</P>
+      <P Name="RTWModifiedTimeStamp">690240182</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.37&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -625,7 +627,7 @@ end</P>
         </Array>
       </Object>
       <Object PropName="InstrumentedSignals" ObjectID="2" ClassName="Simulink.HMI.InstrumentedSignals">
-        <Array PropName="Persistence" Type="Struct" Dimension="20*1">
+        <Array PropName="Persistence" Type="Struct" Dimension="22*1">
           <MATStruct>
             <Field Name="UUID" Class="char">d61b2e22-523c-47f9-a37a-0c81b5233e5e</Field>
             <Field Name="BlockPath_" Class="char">Subsystem/Add3</Field>
@@ -1026,6 +1028,46 @@ end</P>
             </Array>
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
+          <MATStruct>
+            <Field Name="UUID" Class="char">b3e5eaec-0f6d-486c-9b2f-5d0e51012c46</Field>
+            <Field Name="BlockPath_" Class="char">Subsystem/MATLAB Function</Field>
+            <Field Name="SID_" Class="char">514</Field>
+            <Field Name="SubPath_" Class="char"/>
+            <Field Name="OutputPortIndex_" Class="double">2.0</Field>
+            <Field Name="LogicalPortIndex_" Class="double">0.0</Field>
+            <Field Name="SignalName_" Class="char"/>
+            <Field Name="SubSysPath_" Class="char"/>
+            <Field Name="Decimation_" Class="double">1.0</Field>
+            <Field Name="MaxPoints_" Class="double">1024.0</Field>
+            <Field Name="TargetBufferedStreaming_" Class="double">0.0</Field>
+            <Field Name="IsFrameBased_" Class="double">0.0</Field>
+            <Field Name="HideInSDI_" Class="double">0.0</Field>
+            <Field Name="DomainType_" Class="char"/>
+            <Array PropName="DomainParams_" Type="Struct" Dimension="1*1">
+              <MATStruct/>
+            </Array>
+            <Field Name="VisualType_" Class="char"/>
+          </MATStruct>
+          <MATStruct>
+            <Field Name="UUID" Class="char">b1bf8ad6-88c3-4997-bfe8-897fc5baf520</Field>
+            <Field Name="BlockPath_" Class="char">Subsystem/MATLAB Function</Field>
+            <Field Name="SID_" Class="char">514</Field>
+            <Field Name="SubPath_" Class="char"/>
+            <Field Name="OutputPortIndex_" Class="double">4.0</Field>
+            <Field Name="LogicalPortIndex_" Class="double">0.0</Field>
+            <Field Name="SignalName_" Class="char">Innov</Field>
+            <Field Name="SubSysPath_" Class="char"/>
+            <Field Name="Decimation_" Class="double">1.0</Field>
+            <Field Name="MaxPoints_" Class="double">1024.0</Field>
+            <Field Name="TargetBufferedStreaming_" Class="double">0.0</Field>
+            <Field Name="IsFrameBased_" Class="double">0.0</Field>
+            <Field Name="HideInSDI_" Class="double">0.0</Field>
+            <Field Name="DomainType_" Class="char"/>
+            <Array PropName="DomainParams_" Type="Struct" Dimension="1*1">
+              <MATStruct/>
+            </Array>
+            <Field Name="VisualType_" Class="char"/>
+          </MATStruct>
         </Array>
       </Object>
     </SimulationSettings>
@@ -1056,7 +1098,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
         <P Name="Description"/>
         <P Name="Components" Class="double">[]</P>
         <P Name="StartTime">0.0</P>
-        <P Name="StopTime">100000</P>
+        <P Name="StopTime">35000</P>
         <P Name="AbsTol">auto</P>
         <P Name="AutoScaleAbsTol">on</P>
         <P Name="FixedStep">Ts_data</P>
@@ -1804,7 +1846,7 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.xml
   <P Name="NumRootOutports">0</P>
   <P Name="ParameterArgumentNames"/>
   <P Name="NumModelReferences">0</P>
-  <P Name="NumTestPointedSignals">20</P>
+  <P Name="NumTestPointedSignals">22</P>
   <TestPointedSignal>
     <P Name="SignalName">I_A</P>
     <P Name="FullBlockPath">$bdroot/From Workspace</P>
@@ -1883,9 +1925,25 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.xml
     <P Name="Decimation">2</P>
   </TestPointedSignal>
   <TestPointedSignal>
+    <P Name="SignalName">P_out</P>
+    <P Name="FullBlockPath">$bdroot/Subsystem/MATLAB Function</P>
+    <P Name="PortIndex">2</P>
+    <P Name="LogSignal">1</P>
+    <P Name="MaxPoints">5000</P>
+    <P Name="Decimation">2</P>
+  </TestPointedSignal>
+  <TestPointedSignal>
     <P Name="SignalName">K_out</P>
     <P Name="FullBlockPath">$bdroot/Subsystem/MATLAB Function</P>
     <P Name="PortIndex">3</P>
+    <P Name="LogSignal">1</P>
+    <P Name="MaxPoints">5000</P>
+    <P Name="Decimation">2</P>
+  </TestPointedSignal>
+  <TestPointedSignal>
+    <P Name="SignalName">Innov</P>
+    <P Name="FullBlockPath">$bdroot/Subsystem/MATLAB Function</P>
+    <P Name="PortIndex">4</P>
     <P Name="LogSignal">1</P>
     <P Name="MaxPoints">5000</P>
     <P Name="Decimation">2</P>
@@ -1963,85 +2021,85 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.xml
 __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1" defaultPackage="slid" packageUris="http://schema.mathworks.com/mf0/slid/R2020b_20191110">
-  <System type="System" uuid="4e00e596-39e5-4f8c-916b-e46dc10b5ceb">
-    <Interface type="Interface" uuid="84d9cedb-e56d-4b35-9dc7-a043d93d93a5"/>
+  <System type="System" uuid="1982df3d-ea37-46e4-92a6-e57a7c7bcebc">
+    <Interface type="Interface" uuid="a8c3fc1e-ad69-4f4d-a296-2af2c0474a14"/>
   </System>
 </MF0>
 __MWOPC_PART_BEGIN__ /simulink/plugins/LogicAnalyzerPlugin.xml
 <?xml version="1.0" encoding="utf-8"?>
 <LogicAnalyzerPlugin>
-  <P Name="LogicAnalyzerSignalOrdering">0696e1a2-e3a4-4386-b1d2-852bc6e28fa8,1f50ba1f-554d-4642-92aa-d8969855999d,7503ed09-69cd-42cb-a908-5342ca9603de,54c659f1-afca-450f-80de-e6292b7436a8,68cee0d9-7d59-491c-88fa-c5b391b033d5,af7635bf-aa6c-4c6e-93b0-0297b3344a18,0ba6f572-4e7b-4f08-972f-d90a1933acf6,4cb583a6-34b9-44d7-99a9-9237febf1cf2,474b570f-0a1e-401a-b2ad-7af16db9ed1d,b3b2ae96-7af6-42a4-8c3c-9c89af0b0dc7,e15249f4-c77e-4127-9713-c787a9d453e0,d61b2e22-523c-47f9-a37a-0c81b5233e5e,4a9875e2-7a02-408c-9058-01801d16db90,a0a869ec-2fe9-4f96-8c4a-67c472375707,c8bb05a7-1c1e-4dc2-bb25-d058438772e4,2792f806-2f5f-4c83-9977-b9660c363e97,a8d0397c-ac2c-4e40-a743-4d0d9def9e45,e19d6c1a-78d1-49ef-8927-b29d1e8f3f2e,83801c1b-6bad-4a84-ae98-f307fc6da423,ada6a503-2ad9-4871-8eb3-9af0452e7379</P>
+  <P Name="LogicAnalyzerSignalOrdering">0696e1a2-e3a4-4386-b1d2-852bc6e28fa8,1f50ba1f-554d-4642-92aa-d8969855999d,7503ed09-69cd-42cb-a908-5342ca9603de,54c659f1-afca-450f-80de-e6292b7436a8,68cee0d9-7d59-491c-88fa-c5b391b033d5,af7635bf-aa6c-4c6e-93b0-0297b3344a18,0ba6f572-4e7b-4f08-972f-d90a1933acf6,4cb583a6-34b9-44d7-99a9-9237febf1cf2,474b570f-0a1e-401a-b2ad-7af16db9ed1d,b3b2ae96-7af6-42a4-8c3c-9c89af0b0dc7,e15249f4-c77e-4127-9713-c787a9d453e0,d61b2e22-523c-47f9-a37a-0c81b5233e5e,4a9875e2-7a02-408c-9058-01801d16db90,a0a869ec-2fe9-4f96-8c4a-67c472375707,c8bb05a7-1c1e-4dc2-bb25-d058438772e4,b3e5eaec-0f6d-486c-9b2f-5d0e51012c46,2792f806-2f5f-4c83-9977-b9660c363e97,b1bf8ad6-88c3-4997-bfe8-897fc5baf520,a8d0397c-ac2c-4e40-a743-4d0d9def9e45,e19d6c1a-78d1-49ef-8927-b29d1e8f3f2e,83801c1b-6bad-4a84-ae98-f307fc6da423,ada6a503-2ad9-4871-8eb3-9af0452e7379</P>
 </LogicAnalyzerPlugin>
 
 __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sltp_graph version="1.1" packageUris="http://schema.mathworks.com/mf0/sltp_mm/R2021b_202106150630">
-  <sltp.mm.core.Context type="sltp.mm.core.Context" uuid="f32b3c67-1b10-4573-aeb9-51a9ab659bfd">
-    <globalData type="sltp.mm.core.GlobalData" uuid="90e32e10-eb96-4e92-b096-1023c424b92a">
+  <sltp.mm.core.Context type="sltp.mm.core.Context" uuid="2127c9e3-fc84-4a35-b4be-e9d4b792d6e8">
+    <globalData type="sltp.mm.core.GlobalData" uuid="ebadbdda-f245-44e3-8d63-7e50afe8bc33">
       <dataName>portbms_hvon</dataName>
       <type>RootInport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="3695f616-c125-42f1-a6a5-366463a6e2fa">
+    <globalData type="sltp.mm.core.GlobalData" uuid="c68636f2-db8c-401f-b702-2ee13281b993">
       <dataName>portis_charging</dataName>
       <type>RootInport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="b925493d-0431-4d53-9fa0-f7de14c679b5">
+    <globalData type="sltp.mm.core.GlobalData" uuid="16ae27d0-1f74-4a60-9d14-464fea15d721">
       <dataName>portp1_avg_cell_temp</dataName>
       <type>RootInport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="c14a7452-bfbd-459e-808b-ce45d4251715">
+    <globalData type="sltp.mm.core.GlobalData" uuid="ab6063c1-4407-41f0-a5fd-fda03942db3c">
       <dataName>portp1_avg_cell_voltage</dataName>
       <type>RootInport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="d57120cd-1c2a-48b5-953c-85fc3cdfb932">
+    <globalData type="sltp.mm.core.GlobalData" uuid="440b546d-0af4-41de-8214-26644e8c5657">
       <dataName>portp1_current_mA</dataName>
       <type>RootInport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="58dd08aa-4613-499c-aaeb-e27665534fc4">
+    <globalData type="sltp.mm.core.GlobalData" uuid="11238bf7-0cee-4287-bce2-ae36824029aa">
       <dataName>portp1_sfp_age</dataName>
       <type>RootInport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="1a1d5bda-0448-43ee-809b-2cb459c955c7">
+    <globalData type="sltp.mm.core.GlobalData" uuid="4785242b-95bc-4dc6-9f14-79038f2b2e4c">
       <dataName>portp2_avg_cell_temp</dataName>
       <type>RootInport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="550d0026-d5a3-4cb8-848b-bc720d494084">
+    <globalData type="sltp.mm.core.GlobalData" uuid="0efc2993-9b1a-4d5b-9666-40a160d41f82">
       <dataName>portp2_avg_cell_voltage</dataName>
       <type>RootInport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="4325713c-cde4-4091-89ab-4d05a5d9c5f2">
+    <globalData type="sltp.mm.core.GlobalData" uuid="50c8b1c9-a0e9-4f70-b1de-d8ad60c38334">
       <dataName>portp2_current_mA</dataName>
       <type>RootInport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="f6e5fe7d-557e-4ab7-82ac-eca41a9aca91">
+    <globalData type="sltp.mm.core.GlobalData" uuid="6cbbdbd8-8e3d-4870-9251-6f7843b7bc88">
       <dataName>portp2_sfp_age</dataName>
       <type>RootInport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="784e224a-f5e3-4f2c-80eb-3abca5cbd97c">
+    <globalData type="sltp.mm.core.GlobalData" uuid="86b3dd26-7ab2-4d8d-a9ef-73d54b578d0b">
       <dataName>portvcu_calculated_soc</dataName>
       <type>RootOutport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="caaa051b-4e5c-4f4f-b6f8-3594696a82c1">
+    <globalData type="sltp.mm.core.GlobalData" uuid="f9f95ca9-a22e-4416-8168-8899e05709be">
       <dataName>portvcu_calculated_soc_p1</dataName>
       <type>RootOutport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="b074c96d-dfc5-4a94-b6c2-39e26ddd22f9">
+    <globalData type="sltp.mm.core.GlobalData" uuid="8ede69a2-4932-4996-90e2-62c318b81cd0">
       <dataName>portvcu_calculated_soc_p2</dataName>
       <type>RootOutport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="0feb3ab6-c69b-4ab9-a739-1190800a674c">
+    <globalData type="sltp.mm.core.GlobalData" uuid="5a6218cc-3b1a-4113-8a93-8c1d09e76210">
       <dataName>portvcu_coulomb_count</dataName>
       <type>RootOutport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="d58eedda-2bda-4999-bda6-ee9c9faa31ed">
+    <globalData type="sltp.mm.core.GlobalData" uuid="8f43942f-24e3-49d3-b18b-28421b9e3fe9">
       <dataName>portvcu_soc_cell_voltage</dataName>
       <type>RootOutport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="f9ac1fed-091a-4a33-a5ad-bb6128268492">
+    <globalData type="sltp.mm.core.GlobalData" uuid="eb3c4c1e-b5a7-4204-9db7-79fd10e85a5b">
       <dataName>portvcu_soc_coulomb_counted</dataName>
       <type>RootOutport</type>
     </globalData>
-    <globalData type="sltp.mm.core.GlobalData" uuid="bd1a1e97-d385-4b29-b948-58871621aed1">
+    <globalData type="sltp.mm.core.GlobalData" uuid="6bf59e12-ced6-472c-8586-3d5218bf7766">
       <dataName>portvcu_thermal_loss_watt_hour</dataName>
       <type>RootOutport</type>
     </globalData>
@@ -2050,21 +2108,21 @@ __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
       <isSynchronized>true</isSynchronized>
       <panelState type="sltp.mm.core.EditorPanelState" uuid="5251c0ea-70e4-47d4-b265-cd331e3fdce6"/>
     </editorState>
-    <rootTask type="sltp.mm.core.Task" uuid="4667e2b3-d603-458d-8ce2-8b589d8feb16">
-      <context type="sltp.mm.core.Context" uuid="f32b3c67-1b10-4573-aeb9-51a9ab659bfd"/>
+    <rootTask type="sltp.mm.core.Task" uuid="24a9c98c-e0b9-4d4a-b197-68f117a80401">
+      <context type="sltp.mm.core.Context" uuid="2127c9e3-fc84-4a35-b4be-e9d4b792d6e8"/>
       <explicit>false</explicit>
       <name>Default</name>
       <priority>-2147483648</priority>
-      <subgraph type="sltp.mm.core.Graph" uuid="2a630927-0edd-4585-a379-b4b5e1221759">
-        <tasks type="sltp.mm.core.Task" uuid="47dacaef-58fb-4f5b-b228-ea88b470fc56">
+      <subgraph type="sltp.mm.core.Graph" uuid="4f9e2468-6109-4ace-b8ce-2eeb554766a5">
+        <tasks type="sltp.mm.core.Task" uuid="8b01039f-5acf-407d-9af8-4d8f029d423e">
           <baseTask>true</baseTask>
-          <context type="sltp.mm.core.Context" uuid="f32b3c67-1b10-4573-aeb9-51a9ab659bfd"/>
+          <context type="sltp.mm.core.Context" uuid="2127c9e3-fc84-4a35-b4be-e9d4b792d6e8"/>
           <explicit>false</explicit>
           <id>1</id>
           <isTimed>true</isTimed>
           <name>Cont</name>
           <priority>40</priority>
-          <rates type="sltp.mm.core.Rate" uuid="03706f0f-1abb-4e87-b1e3-852266701ac7">
+          <rates type="sltp.mm.core.Rate" uuid="bcffd6ae-68b5-473b-8f77-7697fffb9a1c">
             <annotation>Cont</annotation>
             <color>255</color>
             <hasBlocks>true</hasBlocks>
@@ -2074,7 +2132,7 @@ __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
             </rateSpec>
             <sti>0</sti>
           </rates>
-          <rates type="sltp.mm.core.Rate" uuid="ea3df4e8-dc00-4772-ab7c-7c1160a4cce8">
+          <rates type="sltp.mm.core.Rate" uuid="3a53e2c6-9b76-4393-9289-ca41ccedd66d">
             <annotation>D1</annotation>
             <color>-436207361</color>
             <hasBlocks>true</hasBlocks>
@@ -2256,12 +2314,12 @@ function [soc_hat, P_out, K_out, innov] = soc_ekf_A_dd( ...
 % - Trust region (±1% SOC/step) on correction to avoid jumps
 % - Joseph-stabilized covariance (keeps P &gt;= 0)
 %
-% Inputs (all via block ports; Option-A style):
+% Inputs:
 %   Voc_meas       : de-polarized voltage [V] = V + v1 + v2 + R0*I_meas
 %   I_meas         : current [A], discharge-positive convention
 %   Ts             : sample time [s]
 %   Qn             : nominal capacity [Ah]
-%   eta            : Coulombic efficiency [0..1] (use 1.0 if you decided so)
+%   eta            : Coulombic efficiency [0..1]
 %   soc_prev       : previous SOC estimate [0..1]
 %   P_prev         : previous SOC covariance
 %   OCV_SOC_bp     : [%] SOC breakpoints (strictly increasing), vector
@@ -2281,17 +2339,16 @@ function [soc_hat, P_out, K_out, innov] = soc_ekf_A_dd( ...
 % ----------------------------
 % 0) Tunables for Path-B logic
 % ----------------------------
-
-alpha_R        = 0.10;   % inflate R with |I| (0.08–0.15 typical for “ignore measurement”)
+alpha_R        = 0.10;   % inflate R with |I| (0.08–0.15 typical)
 alpha_plateau  = 2.0;    % inflate R when slope is small (1.5–3.0)
-H_ref          = 0.03;   % reference slope [V per fractional SOC] (0.03–0.05)
-nis_gate       = 2.71;   % ~90% chi-square gate (reject more often than 95%)
+H_ref          = 0.03;   % reference slope [V per fractional SOC]
+nis_gate       = 2.71;   % ~90% chi-square gate
 delta_cap      = 0.005;  % trust region: limit per-step SOC correction to ±0.5%
 
 % ----------------------------
 % 1) Prediction (coulomb count)
 % ----------------------------
-% NOTE: Qn in Ah -&gt; convert via / (Qn*3600). With discharge-positive current,
+% Qn in Ah -&gt; convert via / (Qn*3600). With discharge-positive current,
 % SOC must decrease under discharge.
 soc_pred = soc_prev - (eta * Ts * I_meas) / (Qn * 3600);
 soc_pred = min(max(soc_pred, soc_min), soc_max);
@@ -2310,43 +2367,47 @@ dH_tab  = OCV_dVoc_dSOC(:);       % [N x 1], V per fractional SOC
 % Clamp SOC to the table&apos;s range for interpolation (avoid extrap artifacts)
 soc_q = min(max(soc_pred, bp_frac(1)), bp_frac(end));
 
-% &apos;linear&apos; is MATLAB Function/codegen-safe; if sim-only, you may switch to &apos;pchip&apos;
-Voc_pred  = interp1(bp_frac, voc_tab, soc_q, &apos;linear&apos;);        % predicted voltage
-dVoc_dSOC = interp1(bp_frac, dH_tab,  soc_q, &apos;linear&apos;);        % Jacobian (slope)
+% &apos;linear&apos; is MATLAB Function/codegen-safe
+Voc_pred = interp1(bp_frac, voc_tab, soc_q, &apos;linear&apos;);  % predicted voltage
+H_raw    = interp1(bp_frac, dH_tab,  soc_q, &apos;linear&apos;);  % raw Jacobian (slope)
 
-% Guard the slope
-if ~isfinite(dVoc_dSOC)
+% Guard the slope for update
+if ~isfinite(H_raw)
     H = H_min;
 else
-    H = max(dVoc_dSOC, H_min);   % numerical floor only
+    H = max(H_raw, H_min);   % floor only for filter update/gain
 end
 
 % ----------------------------
-% 3) R scheduling (prefer prediction in pulses &amp; plateaus)
+% 3) R scheduling (use RAW slope)
 % ----------------------------
-% Inflate measurement variance when |I| is large and when OCV slope is small.
-R_eff = R_meas * (1 + alpha_R * abs(I_meas)) * (1 + alpha_plateau * (H_ref / H)^2);
+% *** Fix B implemented here ***
+% Inflate measurement variance when |I| is large and when OCV slope is small,
+% but compute the plateau factor using H_raw (unfloored) to properly detect plateaus.
+epsH  = 1e-9;  % avoid division by zero
+plateau_factor = 1 + alpha_plateau * (H_ref / max(abs(H_raw), epsH))^2;
+R_eff = R_meas * (1 + alpha_R * abs(I_meas)) * plateau_factor;
 
 % ----------------------------
 % 4) Innovation, gain, gating
 % ----------------------------
-innov = Voc_meas - Voc_pred;              % voltage innovation, z - z_hat
+innov = Voc_meas - Voc_pred;       % voltage innovation, z - z_hat
 
-S = H*H*P_pred + R_eff;                   % scalar innovation variance
+S = H*H*P_pred + R_eff;            % scalar innovation variance
 if S &lt; 1e-12, S = 1e-12; end
 
-K = (P_pred * H) / S;                     % voltage-domain gain
+K = (P_pred * H) / S;              % voltage-domain gain
 
 % NIS gating (skip update when innovation is statistically unlikely)
-NIS = (innov * innov) / S;                % chi-square, 1 dof
+NIS = (innov * innov) / S;         % chi-square, 1 dof
 if NIS &gt; nis_gate
-    K = 0.0;                              % trust prediction only this sample
+    K = 0.0;                       % trust prediction only this sample
 end
 
 % ----------------------------
 % 5) Update with trust region
 % ----------------------------
-delta  = K * innov;                       % SOC correction (via voltage-domain gain)
+delta  = K * innov;                % SOC correction (via voltage-domain gain)
 % Limit correction to ±delta_cap per step to avoid large jumps
 if delta &gt;  delta_cap, delta =  delta_cap; end
 if delta &lt; -delta_cap, delta = -delta_cap; end
@@ -2354,7 +2415,7 @@ if delta &lt; -delta_cap, delta = -delta_cap; end
 soc_hat = soc_pred + delta;
 soc_hat = min(max(soc_hat, soc_min), soc_max);
 
-% Jocobian-stabilized covariance (keeps P non-negative), using R_eff
+% Joseph-stabilized covariance (keeps P non-negative), using R_eff
 P_out = (1 - K*H)^2 * P_pred + (K*K) * R_eff;
 
 K_out = K;  % for logging/tuning
@@ -2773,6 +2834,8 @@ __MWOPC_PART_BEGIN__ /simulink/stateflow/chart_64.xml
   <P Name="viewLimits">[0 156.75 0 153.75]</P>
   <P Name="screen">[1 1 3600 1200 1.180555555555556]</P>
   <P Name="viewObj">64</P>
+  <P Name="visible">1</P>
+  <subviewS/>
   <P Name="ssIdHighWaterMark">9</P>
   <P Name="decomposition">CLUSTER_CHART</P>
   <P Name="type">EML_CHART</P>
@@ -2792,7 +2855,7 @@ __MWOPC_PART_BEGIN__ /simulink/stateflow/chart_64.xml
       <P Name="decomposition">CLUSTER_STATE</P>
       <eml>
         <P Name="isEML">1</P>
-        <P Name="script">function Vrc1_next = Vrc2_ZOH(R2, C2, Ts, I, Vrc2_prev)
+        <P Name="script">function Vrc2_next = Vrc2_ZOH(R2, C2, Ts, I, Vrc2_prev)
 % Exact ZOH update for fast RC branch
 % Guards
 R2 = min(max(R2, 1e-6), 10);
@@ -2802,7 +2865,7 @@ tau1 = R2 * C2;
 a    = exp( - Ts / tau1 );
 b    = (1 - a) * R2;
 
-Vrc1_next = a * Vrc2_prev + b * I;
+Vrc2_next = a * Vrc2_prev + b * I;
 end
 </P>
       </eml>
@@ -2824,7 +2887,7 @@ end
       </props>
       <P Name="dataType">Inherit: Same as Simulink</P>
     </data>
-    <data SSID="5" name="Vrc1_next">
+    <data SSID="5" name="Vrc2_next">
       <P Name="scope">OUTPUT_DATA</P>
       <props>
         <array>
@@ -3323,10 +3386,9 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_275.xml
 <System>
   <P Name="Location">[-8, -8, 1928, 1040]</P>
   <P Name="SystemRect">[0.000000, 0.000000, 0.000000, 0.000000]</P>
-  <P Name="Open">on</P>
   <P Name="SetExecutionDomain">off</P>
   <P Name="ExecutionDomainType">Deduce</P>
-  <P Name="ZoomFactor">30</P>
+  <P Name="ZoomFactor">40</P>
   <P Name="SimulinkSubDomain">Simulink</P>
   <Block BlockType="Inport" Name="SOC0" SID="276">
     <P Name="Position">[-105, 278, -75, 292]</P>
@@ -3819,9 +3881,19 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_275.xml
       <P Name="PropagatedSignals">soc_hat</P>
     </Port>
     <Port>
+      <P Name="PortNumber">2</P>
+      <P Name="Name">P_out</P>
+      <P Name="PropagatedSignals">P_out</P>
+    </Port>
+    <Port>
       <P Name="PortNumber">3</P>
       <P Name="Name">K_out</P>
       <P Name="PropagatedSignals">K_out</P>
+    </Port>
+    <Port>
+      <P Name="PortNumber">4</P>
+      <P Name="Name">Innov</P>
+      <P Name="PropagatedSignals">innov</P>
     </Port>
     <System Ref="system_514"/>
   </Block>
@@ -3837,7 +3909,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_275.xml
     <Port>
       <P Name="PortNumber">1</P>
       <P Name="Name">Vrc2</P>
-      <P Name="PropagatedSignals">Vrc1_next</P>
+      <P Name="PropagatedSignals">Vrc2_next</P>
     </Port>
     <System Ref="system_436"/>
   </Block>
@@ -4436,7 +4508,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_275.xml
     <P Name="Points">[26, 0]</P>
     <Branch>
       <P Name="ZOrder">543</P>
-      <P Name="Points">[0, -17; -15, 0; 0, -43]</P>
+      <P Name="Points">[0, -17; -765, 0; 0, -43]</P>
       <P Name="Dst">512#in:1</P>
     </Branch>
     <Branch>
@@ -4532,7 +4604,9 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_275.xml
     <P Name="Dst">514#in:6</P>
   </Line>
   <Line>
+    <P Name="Name">P_out</P>
     <P Name="ZOrder">553</P>
+    <P Name="Labels">[1, 1]</P>
     <P Name="Src">514#out:2</P>
     <P Name="Points">[47, 0; 0, 300]</P>
     <P Name="Dst">520#in:1</P>
@@ -4664,7 +4738,9 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_275.xml
     <P Name="Dst">542#in:1</P>
   </Line>
   <Line>
+    <P Name="Name">Innov</P>
     <P Name="ZOrder">762</P>
+    <P Name="Labels">[1, 1]</P>
     <P Name="Src">514#out:4</P>
     <P Name="Dst">543#in:1</P>
   </Line>
@@ -4684,6 +4760,7 @@ p, li { white-space: pre-wrap; }
     <P Name="FixedHeight">on</P>
     <P Name="FixedWidth">on</P>
     <P Name="Interpreter">rich</P>
+    <P Name="ZOrder">-1</P>
   </Annotation>
   <Annotation SID="548">
     <P Name="Position">[2506, 532, 3376, 1087]</P>
@@ -4693,7 +4770,7 @@ p, li { white-space: pre-wrap; }
     <P Name="BackgroundColor">[0.952941, 0.952941, 0.952941]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">21</P>
+    <P Name="ZOrder">27</P>
     <P Name="FontSize">12</P>
   </Annotation>
   <Annotation SID="547">
@@ -4704,7 +4781,7 @@ p, li { white-space: pre-wrap; }
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">20</P>
+    <P Name="ZOrder">26</P>
     <P Name="FontSize">12</P>
   </Annotation>
   <Annotation SID="466">
@@ -4748,7 +4825,7 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:44px; font-weight:600;&quot;&gt;Kalman Filter&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[2727, 447, 3016, 506]</P>
+    <P Name="Position">[2785, 461, 3074, 520]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="FixedHeight">on</P>
     <P Name="FixedWidth">on</P>
@@ -4808,14 +4885,14 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_436.xml
     <P Name="SFcnIsStateOwnerBlock">off</P>
     <Port>
       <P Name="PortNumber">2</P>
-      <P Name="Name">Vrc1_next</P>
+      <P Name="Name">Vrc2_next</P>
     </Port>
   </Block>
   <Block BlockType="Terminator" Name=" Terminator " SID="436::21">
     <P Name="Position">[460, 241, 480, 259]</P>
     <P Name="ZOrder">12</P>
   </Block>
-  <Block BlockType="Outport" Name="Vrc1_next" SID="436::5">
+  <Block BlockType="Outport" Name="Vrc2_next" SID="436::5">
     <P Name="Position">[460, 101, 480, 119]</P>
     <P Name="ZOrder">-5</P>
   </Block>
@@ -4849,7 +4926,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_436.xml
     <P Name="Dst">436::19#in:5</P>
   </Line>
   <Line>
-    <P Name="Name">Vrc1_next</P>
+    <P Name="Name">Vrc2_next</P>
     <P Name="ZOrder">6</P>
     <P Name="Labels">[0, 0]</P>
     <P Name="Src">436::19#out:2</P>
@@ -5045,7 +5122,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_482.xml
   <P Name="Open">on</P>
   <P Name="SetExecutionDomain">off</P>
   <P Name="ExecutionDomainType">Deduce</P>
-  <P Name="ZoomFactor">150</P>
+  <P Name="ZoomFactor">155</P>
   <P Name="SimulinkSubDomain">Simulink</P>
   <Block BlockType="Inport" Name="I_A" SID="483">
     <P Name="Position">[185, 88, 215, 102]</P>
@@ -5691,22 +5768,22 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
         <Object ObjectID="5">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">1</P>
-          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">275</P>
-          <P Name="Extents" Class="double">[1820.0, 453.0]</P>
-          <P Name="ZoomFactor" Class="double">0.29999999999999993</P>
-          <P Name="Offset" Class="double">[248.62933061562217, -429.79470327203927]</P>
-          <P Name="SceneRectInView" Class="double">[248.62933061562217, -429.79470327203927, 6066.6666666666679, 1510.0000000000002]</P>
+          <P Name="ViewObjType" Class="char">StudioAdapterBlock</P>
+          <P Name="LoadSaveID" Class="char">469</P>
+          <P Name="Extents" Class="double">[1820.0, 783.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[0.0, 0.0]</P>
+          <P Name="SceneRectInView" Class="double">[0.0, 0.0, 0.0, 0.0]</P>
         </Object>
         <Object ObjectID="6">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">1</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
           <P Name="LoadSaveID" Class="char">482</P>
-          <P Name="Extents" Class="double">[1820.0, 453.0]</P>
-          <P Name="ZoomFactor" Class="double">1.5</P>
-          <P Name="Offset" Class="double">[105.510180614148, 74.144013438734589]</P>
-          <P Name="SceneRectInView" Class="double">[105.510180614148, 74.144013438734589, 1213.3333333333333, 302.0]</P>
+          <P Name="Extents" Class="double">[1882.0, 806.0]</P>
+          <P Name="ZoomFactor" Class="double">1.5510989010989011</P>
+          <P Name="Offset" Class="double">[105.510180614148, -34.671785356872931]</P>
+          <P Name="SceneRectInView" Class="double">[105.510180614148, -34.671785356872931, 1213.3333333333333, 519.631597591215]</P>
         </Object>
         <Object ObjectID="7">
           <P Name="IsActive" Class="logical">1</P>
@@ -5714,26 +5791,26 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="ViewObjType" Class="char">SimulinkTopLevel</P>
           <P Name="LoadSaveID" Class="char">0</P>
           <P Name="Extents" Class="double">[1820.0, 453.0]</P>
-          <P Name="ZoomFactor" Class="double">2.5</P>
-          <P Name="Offset" Class="double">[6051.5479954607408, 1246.4728653072732]</P>
-          <P Name="SceneRectInView" Class="double">[6051.5479954607408, 1246.4728653072732, 728.0, 181.2]</P>
+          <P Name="ZoomFactor" Class="double">2.4979079497907959</P>
+          <P Name="Offset" Class="double">[5997.3953098827469, 1247.3241206030152]</P>
+          <P Name="SceneRectInView" Class="double">[5997.3953098827469, 1247.3241206030152, 728.60971524288084, 181.35175879396979]</P>
         </Object>
         <Object ObjectID="8">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
-          <P Name="ViewObjType" Class="char">StudioAdapterBlock</P>
-          <P Name="LoadSaveID" Class="char">469</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">275</P>
           <P Name="Extents" Class="double">[1820.0, 453.0]</P>
-          <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[0.0, 0.0]</P>
-          <P Name="SceneRectInView" Class="double">[0.0, 0.0, 0.0, 0.0]</P>
+          <P Name="ZoomFactor" Class="double">0.4</P>
+          <P Name="Offset" Class="double">[576.73348504929345, -471.08015863327807]</P>
+          <P Name="SceneRectInView" Class="double">[576.73348504929345, -471.08015863327807, 4550.0, 1132.5]</P>
         </Object>
         <Object ObjectID="9">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">StudioAdapterBlock</P>
-          <P Name="LoadSaveID" Class="char">514</P>
-          <P Name="Extents" Class="double">[1820.0, 453.0]</P>
+          <P Name="LoadSaveID" Class="char">436</P>
+          <P Name="Extents" Class="double">[1820.0, 783.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
           <P Name="Offset" Class="double">[0.0, 0.0]</P>
           <P Name="SceneRectInView" Class="double">[0.0, 0.0, 0.0, 0.0]</P>
@@ -5742,8 +5819,8 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">StudioAdapterBlock</P>
-          <P Name="LoadSaveID" Class="char">513</P>
-          <P Name="Extents" Class="double">[1820.0, 536.0]</P>
+          <P Name="LoadSaveID" Class="char">514</P>
+          <P Name="Extents" Class="double">[1820.0, 783.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
           <P Name="Offset" Class="double">[0.0, 0.0]</P>
           <P Name="SceneRectInView" Class="double">[0.0, 0.0, 0.0, 0.0]</P>
@@ -5752,7 +5829,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">StudioAdapterBlock</P>
-          <P Name="LoadSaveID" Class="char">436</P>
+          <P Name="LoadSaveID" Class="char">513</P>
           <P Name="Extents" Class="double">[1820.0, 536.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
           <P Name="Offset" Class="double">[0.0, 0.0]</P>
@@ -5821,18 +5898,6 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       </Array>
       <Array PropName="DockComponentsInfo" Type="Simulink.DockComponentInfo" Dimension="1*3">
         <Object ObjectID="18">
-          <P Name="Type" Class="char">GLUE2:PropertyInspector</P>
-          <P Name="ID" Class="char">Property Inspector</P>
-          <P Name="Visible" Class="logical">1</P>
-          <P Name="CreateCallback" Class="char"/>
-          <P Name="UserData" Class="char"/>
-          <P Name="Floating" Class="logical">0</P>
-          <P Name="DockPosition" Class="char">Right</P>
-          <P Name="Width" Class="int32">640</P>
-          <P Name="Height" Class="int32">480</P>
-          <P Name="Minimized" Class="char">On</P>
-        </Object>
-        <Object ObjectID="19">
           <P Name="Type" Class="char">Simulink:Editor:ReferencedFiles</P>
           <P Name="ID" Class="char">Referenced Files</P>
           <P Name="Visible" Class="logical">0</P>
@@ -5845,7 +5910,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Height" Class="int32">480</P>
           <P Name="Minimized" Class="char">Unset</P>
         </Object>
-        <Object ObjectID="20">
+        <Object ObjectID="19">
           <P Name="Type" Class="char">GLUE2:SpreadSheet</P>
           <P Name="ID" Class="char">ModelData</P>
           <P Name="Visible" Class="logical">0</P>
@@ -5856,6 +5921,18 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Width" Class="int32">640</P>
           <P Name="Height" Class="int32">480</P>
           <P Name="Minimized" Class="char">Unset</P>
+        </Object>
+        <Object ObjectID="20">
+          <P Name="Type" Class="char">GLUE2:PropertyInspector</P>
+          <P Name="ID" Class="char">Property Inspector</P>
+          <P Name="Visible" Class="logical">1</P>
+          <P Name="CreateCallback" Class="char"/>
+          <P Name="UserData" Class="char"/>
+          <P Name="Floating" Class="logical">0</P>
+          <P Name="DockPosition" Class="char">Right</P>
+          <P Name="Width" Class="int32">640</P>
+          <P Name="Height" Class="int32">480</P>
+          <P Name="Minimized" Class="char">On</P>
         </Object>
       </Array>
       <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABjAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAjAD///8AAAABAAAAAAAAAAD8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAAA/////wAAAawA////AAAAAwAAB0IAAAFG/AEAAAAB/AAAAB4AAAdCAAABWQD////6AAAAAQEAAAAC+wAAADYARwBMAFUARQAyADoAUwBwAHIAZQBhAGQAUwBoAGUAZQB0AC8ATQBvAGQAZQBsAEQAYQB0AGEAAAAAAP////8AAAEaAP////v/////AQAAAAD/////AAABWQD///8AAAdCAAACAgAAAAEAAAACAAAAAQAAAAL8AAAABAAAAAAAAAABAAAANgBjAG8AbABsAGEAcABzAGkAYgBsAGUAUABhAG4AZQBsAFQAbwBvAGwAQgBhAHIATABlAGYAdAMAAAAA/////wAAAAAAAAAAAAAAAQAAAAEAAAA4AGMAbwBsAGwAYQBwAHMAaQBiAGwAZQBQAGEAbgBlAGwAVABvAG8AbABCAGEAcgBSAGkAZwBoAHQDAAAAAP////8AAAAAAAAAAAAAAAIAAAAB/////wEAAAAA/////wAAAAAAAAAAAAAAAwAAAAEAAAA6AGMAbwBsAGwAYQBwAHMAaQBiAGwAZQBQAGEAbgBlAGwAVABvAG8AbABCAGEAcgBCAG8AdAB0AG8AbQAAAAAA/////wAAAAAAAAAA</P>
